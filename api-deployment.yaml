@@ -19,4 +19,7 @@ spec:
         image: bootdotdev/synergychat-api:latest
         env:
         - name: API_PORT
-          value: "8080"
+          valueFrom:
+            configMapKeyRef:
+              name: synergychat-api-configmap
+              key: API_PORT
