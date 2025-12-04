@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2025-12-04T16:23:05Z"
+  generation: 3
+  labels:
+    app: synergychat-web
+  name: synergychat-web
+  namespace: default
+  resourceVersion: "4561"
+  uid: 8d5019d5-057b-4371-88d9-18a914d2667f
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: synergychat-web
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: synergychat-web
+    spec:
+      containers:
+      - image: docker.io/bootdotdev/synergychat-web:latest
+        imagePullPolicy: Always
+        name: synergychat-web
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 10
+  conditions:
+  - lastTransitionTime: "2025-12-04T16:23:05Z"
+    lastUpdateTime: "2025-12-04T16:23:16Z"
+    message: ReplicaSet "synergychat-web-76dd6b65c5" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2025-12-04T16:58:24Z"
+    lastUpdateTime: "2025-12-04T16:58:24Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 3
+  readyReplicas: 10
+  replicas: 10
+  updatedReplicas: 10
