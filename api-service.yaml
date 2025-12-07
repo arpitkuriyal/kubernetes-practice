@@ -6,5 +6,5 @@ spec:
   selector:
     app: synergychat-api
   ports:
-      port: 80
+    - port: 80
       targetPort: 8080
